@@ -1,0 +1,8 @@
+{% if messages %}
+    {% for mensaje in messages %}
+		<div class="alert {% if mensaje.tags == 'success' %} alert alert-success alert-dismissible {% else  %} alert alert-warning alert-dismissible {% endif %}">
+        <span class="close" data-dismiss="alert" aria-label="close">&times;</span>
+            {{mensaje}}
+    	</div>
+    {% endfor %}
+{% endif %}

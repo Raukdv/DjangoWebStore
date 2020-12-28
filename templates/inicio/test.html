@@ -1,0 +1,91 @@
+{% extends 'base/base.html' %}
+
+{% block title%}
+{{ title }}
+{% endblock%}
+
+{% block content %}
+
+<link rel="stylesheet" href="/static/css/style.css">
+
+<div class="container">
+	{% if messages %}
+    	{% for mensaje in messages %}
+		<div class="alert {% if mensaje.tags == 'success' %} alert alert-success alert-dismissible {% else  %} alert alert-warning alert-dismissible {% endif %}">
+            <span class="close" data-dismiss="alert" aria-label="close">&times;</span>
+            {{mensaje}}
+        </div>
+    	{% endfor %}
+    {% endif %}
+<div class="center">
+	<div class="row">
+		<div class="col">
+			<h1> {{ message }} </h1>
+
+{% if current_user.is_authenticated %}
+<table class="custom_class">
+			<thead>
+		<tr>
+			<td>Nombre</td>
+			<td>Apellido</td>
+			<td>Nombre de Usuario</td>
+			<td>Id de usuario</td>
+			<td>Registrado el</td>
+			<td>Ultima conexion</td>
+			<td>Correo</td>
+			<td>Permisos de administrador</td>
+		</tr>
+			</thead>
+
+			<tbody>
+		<tr>
+			{% if current_user %}
+			
+			<td>{{ current_user.first_name }}</td>
+			<td>{{ current_user.last_name }}</td>
+			<td>{{ current_user.username }}</td>
+			<td>{{ current_user.id }}</td>
+			<td>{{ current_user.date_joined }}</td>
+			<td>{{ current_user.last_login }}</td>
+			<td>{{ current_user.email }}</td>
+			<td>
+				{% if current_user.is_superuser %}
+				<span class="text-success">Tiene permisos</span>
+				{% else %}
+				<span class="text-danger">No tiene permisos</span>
+				{% endif %}
+			</td>
+		</tr>
+		{% endif %}
+		</tbody>
+
+		
+</table>
+{% else %}
+<h1>Lo sentimos, Error: 404 Not Found, no se han encontrado registros.</h1>
+{% endif %}
+			{% if current_user.is_authenticated %}
+			<a href="{% url 'logout' %}">Cerrar sesion</a> 
+			{% else %}
+			<a href="{% url 'login' %}">Iniciar sesion</a>
+			{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block footer %}
+
+<div class="container">
+	{% if current_user.is_superuser %}
+
+	{% for us in usern %}
+	<td>{{ us.username }}</td>
+	{% endfor %}
+	{% else %} <h4> No tienes ningun permiso, Vista restringuida </h4>
+	{% endif %}
+</div>
+
+{% endblock%}

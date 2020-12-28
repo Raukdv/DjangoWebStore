@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+
+{% block title%}
+Inicio
+{% endblock%}
+
+{% block content %}
+
+	<div class="col">
+		<h4 class="text-center"> {{ message }} </h4>
+		{% include 'snippets/searchp.html' %} <!-- apps.productos -->
+
+		{% if products %}
+
+		{% include 'snippets/listp.html' %} <!-- apps.productos -->
+
+		{% else %}
+		<h1>Lo sentimos, Error: 404 Not Found, no se han encontrado registros.</h1>
+		{% endif %}
+
+	</div>
+{% endblock %}
+

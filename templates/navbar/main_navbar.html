@@ -1,0 +1,75 @@
+{% url 'compras_main' as shoppingcart %}
+
+<div class="jumbotron" style="margin-bottom: 0px;">
+  <h1 style="color: #4DC3FA;"> < App /> StoreWeb </h1>
+</div>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+
+	<div class="container">
+		<a class="navbar-brand" href="{% url 'inicio' %}">Inicio</a>
+
+    <div id="navb" class="navbar-collapse collapse hide">
+      <ul class="navbar-nav">
+        <li class="navbar-item navbar-item {% if request.path == shoppingcart %}active{% endif %}">
+          <a class="nav-link " href="{{ shoppingcart }}">Mi carrito</a>
+        </li>
+      </ul>
+    </div>
+
+		<div>
+			<ul class="navbar-nav md-auto">
+				<li class="nav-item active dropdown">
+				
+        		<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+        		{% if user.is_authenticated %} Opciones
+
+        		{%else%} Inicio de Sesion
+
+        		{%endif%}
+
+        		</a>
+
+       	 			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+              <!-- vista de opciones para administradores -->
+       	 			{% if user.is_superuser and user.is_authenticated %}
+
+					   <a class="dropdown-item" href="{% url 'test' %}"><span class="icon-stack"></span>Ver datos / Editar Usuarios</a>
+
+         			<a class="dropdown-item" href="{% url 'admin_view' %}"><span class="icon-bookmark"></span> Ver datos / Editar Producto</a>
+
+              <a class="dropdown-item" href="{% url 'admin_register' %}"><span class="icon-bookmark"></span>Registrar Producto</a>
+
+              <a class="dropdown-item" href="{% url 'list_category' %}"><span class="icon-bookmark"></span>Opciones de categoria</a>
+
+          		<div class="dropdown-divider"></div>
+          		<a class="dropdown-item" href="{% url 'logout' %}"><span class="icon-undo"></span>cerrar sesion</a>
+
+              <!-- vista de opciones generica para todo usuario -->
+       	 			{% elif user.is_authenticated %}
+
+         			<a class="dropdown-item" href="{% url 'test' %}"><span class="icon-stack"></span>Ver datos</a>
+
+         			<a class="dropdown-item" href=""><span class="icon-bookmark"></span>Registrar Compra</a>
+
+          			<div class="dropdown-divider"></div>
+          			<a class="dropdown-item" href="{% url 'logout' %}"><span class="icon-undo"></span>cerrar sesion</a>
+
+					{%else%}
+
+          			<a class="dropdown-item" href="{% url 'login' %}"><span class="icon-use"></span>Login</a>
+
+          			<div class="dropdown-divider"></div>
+
+         			<a class="dropdown-item" href="{% url 'register' %}"><span class="icon-write"></span>Registrarse</a>
+
+					{%endif%}
+
+        			</div>
+      			</li>
+			</ul>
+		</div>
+	</div>
+</nav>
