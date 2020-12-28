@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %}
+
+{% block title%}
+Editar Producto
+{% endblock%}
+
+{% block content %}
+<div class="container">
+	<div class="col">
+
+<div class="section">
+    {% if form.errors %}
+        <div class="alert alert-warning alert-dismissible">
+        <span class="close" data-dismiss="alert" aria-label="close">&times;</span>
+        {{form.errors}}
+        </div>
+    {% endif %}
+</div>
+
+		<form method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	<h3>Datos a editar:</h3>
+
+	{% if form %}
+	<div class="row">
+
+		{% for field in form %}
+        <div class="col-md-8 col-md-offset-2">
+        	<div class="form-group">
+        		<label>{{ field.label_tag }}</label>
+        		 {{field}}
+        	</div>
+        </div>
+
+        {% endfor %}
+
+	</div>
+	{% else %}
+	<h1>No hay registros de Productos: Error 404</h1>
+	{%endif%}
+
+	<button class="btn btn-danger" type="submit">Sí, Editar</button>
+	<a class= "btn btn-default" href="{% url 'admin_view' %}">Cancelar</a>
+</form>
+	</div>
+</div>
+
+{% endblock %}

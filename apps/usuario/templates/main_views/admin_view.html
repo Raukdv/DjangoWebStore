@@ -1,0 +1,50 @@
+{% extends 'base/base.html' %}
+
+{% block title%}
+{{ title }}
+{% endblock%}
+
+{% block content %}
+
+<link rel="stylesheet" href="/static/css/style3.css">
+
+<!-- Vista de usuario actual -->
+	<div class="col">
+		<h1> {{ message }} </h1>
+{% if current_user.is_authenticated %}
+
+<h1>
+	<span class="blue">&lt;</span>Usuario
+	<span class="blue">&gt;</span>
+	<span class="black">Actual</span>
+</h1>
+
+	{% include 'snippets/table_user.html' %}
+
+{% else %}
+<h1>Lo sentimos, Error: 404 Not Found, no se han encontrado registros.</h1>
+{% endif %}		
+	</div>
+
+&nbsp;
+<!-- Vista de usuarios registrado -->
+<div class="container">
+	{% if current_user.is_superuser %}
+	<h1>
+	<span class="blue">&lt;</span>Usuarios
+	<span class="blue">&gt;</span>
+	<span class="black">registrados</span>
+</h1>
+	{% for us in usern %}
+	&nbsp;
+		
+		{% include 'snippets/table_user.html' with current_user=us %}	
+
+	{% endfor %}
+	{% else %} <h4 class="black"> Jaja no. </h4>
+	{% endif %}
+
+</div>
+
+{% endblock %}
+

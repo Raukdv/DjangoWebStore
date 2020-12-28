@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<form method="post">
+
+	{% csrf_token %}
+
+	<div class="col">
+		<div class="container">
+			<label>Titulo:</label>
+			{{ form.title }}
+		</div>
+
+		<div class="container">
+			<label>Descripción:</label>
+			{{ form.description }}
+		</div>
+
+		<div class="container">
+			<label>Productos:</label>
+		<div class="col">
+			{{ form.products }}
+		</div>
+		<span>manten pulsado crtl para agregar mas de uno (1) o desacer mas de uno (1)</span>
+		</div>
+
+	</div>
+	<button class="mt-2 btn btn-primary" type="submit">Registrar categoria</button>
+</form>
+
+{% endblock %}

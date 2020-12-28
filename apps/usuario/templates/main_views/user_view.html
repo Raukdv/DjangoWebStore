@@ -1,0 +1,60 @@
+{% extends 'base/base.html' %}
+
+{% block title%}
+{{ title }}
+{% endblock%}
+
+{% block content %}
+
+<link rel="stylesheet" href="/static/css/style3.css">
+
+<div class="col">
+	<h1> {{ message }} </h1>
+{% if current_user.is_authenticated %}
+
+<h1>
+	<span class="blue">&lt;</span>Usuario
+	<span class="blue">&gt;</span>
+	<span class="black">Actual</span>
+</h1>
+
+<table class="container2 table table-bordered">
+			<thead>
+		<tr>
+			<td>Nombre de Usuario</td>
+			<td>Nombre</td>
+			<td>Apellido</td>
+			<td>Registrado el</td>
+			<td>Ultima conexion</td>
+			<td>Correo</td>
+		</tr>
+
+			</thead>
+			<tbody>
+
+		<tr>
+			{% if current_user %}
+			<td>{{ current_user.username }}</td>
+			<td>{{ current_user.first_name }}</td>
+			<td>{{ current_user.last_name }}</td>
+			<td>{{ current_user.date_joined }}</td>
+			<td>{{ current_user.last_login }}</td>
+			<td>{{ current_user.email }}</td>
+		</tr>
+		{% endif %}
+		</tbody>	
+</table>
+
+{% else %}
+<h1>Lo sentimos, Error: 404 Not Found, no se han encontrado registros.</h1>
+{% endif %}
+
+			{% if current_user.is_authenticated %}
+			<a href="{% url 'edit' current_user.id %}" >Editar </a>&nbsp;
+			<a href="{% url 'delete' current_user.id %}" >eliminar</a>
+			{% else %}
+			<a href="{% url 'login' %}">Iniciar sesion</a>
+			{% endif %}
+</div>
+&nbsp;
+{% endblock %}

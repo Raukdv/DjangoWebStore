@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+
+{% block title%}
+Registrar Producto
+{% endblock%}
+
+{% block content %}
+<div class="container">
+	<div class="col">
+
+<div class="section">
+    {% if form.errors %}
+        <div class="alert alert-warning alert-dismissible">
+        <span class="close" data-dismiss="alert" aria-label="close">&times;</span>
+        {{form.errors}}
+        </div>
+    {% endif %}
+</div>
+
+		<form method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	<h3>Registro de producto:</h3>	
+	{% if form %}
+	<div class="row">
+
+		{% for field in form %}
+        <div class="col-md-8 col-md-offset-2">
+        	<div class="form-group">
+        		<label>{{ field.label_tag }}</label>
+        		 {{field}}
+        	</div>
+        </div>
+
+        {% endfor %}
+
+	</div>
+	{% else %}
+	<h1>Lo sentimos, intentelo de nuevo</h1>
+	{%endif%}
+	<button class="btn btn-danger" type="submit">Sí, Registrar</button>
+	<a class= "btn btn-default" href="{% url 'admin_view' %}">Cancelar</a>
+</form>
+	</div>
+</div>
+
+{% endblock %}

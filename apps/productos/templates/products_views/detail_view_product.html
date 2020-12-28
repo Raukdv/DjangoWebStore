@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+
+{% block content%}
+
+<div class="col-3">
+
+	{% if producto.image %}
+	<img src="{{ producto.image.url }}" alt="imagen de {{producto.title}}" width="200" height="200">
+	{% endif %}
+</div>
+
+<div class="col">
+
+	<div class="h1"><h2>{{producto.title}}</h2></div>
+	<div class="h5 font-weight-bold">
+		Precio:<span class="text-danger">${{producto.price}}</span>
+	</div>
+	<div class="h4">
+		<p>{{producto.description}}</p>
+	</div>
+	<div class="h4">
+		{% if producto.available == True %}
+		<span class="text-success">Disponible</span>
+		<div class="h2">
+			{% include 'snippets/add.html' %}
+		</div>
+		{% else %}
+		<span class="text-danger">No disponible</span>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+<!-- Productos iterados en una tarjeta-->
+	<div class="card h-100">
+
+		{% if producto.image %}
+			<a href="{{ producto.image.url }}">
+			<img src="{{ producto.image.url }}" alt="imagen de {{producto.title}}" width="180" height="180">
+			</a>
+		{% endif %}
+
+		<div class="card-body">
+			<h5 class="card-title">{{producto.title}}</h5>
+			<p class="card-text">{{producto.description}}</p>
+			<a href="{% url 'product_detail' producto.slug %}" class="btn btn-primary">Ver mas</a>
+		</div> 
+				
+	</div>

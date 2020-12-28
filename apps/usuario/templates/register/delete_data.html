@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	<h3>¿Esta de acuerdo en eliminar este usuario concerniente a los siguientes datos?</h3>	
+	<table class="table table-bordered">
+	<thead>
+
+		<tr>
+			<td>Nombre</td>
+			<td>Apellido</td>
+			<td>Nombre de Usuario</td>
+			<td>Id de usuario</td>
+			<td>Registrado el</td>
+			<td>Ultima conexion</td>
+			<td>Correo</td>
+			<td>Permisos de administrador</td>
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% if user %}
+			<td>{{ user.first_name }}</td>
+			<td>{{ user.last_name }}</td>
+			<td>{{ user.username }}</td>
+			<td>{{ object.id }}</td>
+			<td>{{ user.date_joined }}</td>
+			<td>{{ user.last_login }}</td>
+			<td>{{ user.email }}</td>
+			<td>
+				{% if user.is_superuser %}
+				<span class="text-success">Tiene permisos</span>
+				{% else %}
+				<span class="text-danger">No tiene permisos</span>
+				{% endif %}
+			</td>
+		{% else %}
+		<h1>No hay registros de solicitudes</h1>
+		{% endif %}
+	</tbody>
+</table>
+	<button class="btn btn-danger" type="submit">Sí, eliminar</button>
+	<a class= "btn btn-default" href="{% url 'test' %}">Cancelar</a>
+</form>
+{% endblock %}

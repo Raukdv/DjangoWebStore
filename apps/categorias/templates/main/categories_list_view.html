@@ -1,0 +1,70 @@
+{% extends 'base/base.html' %}
+
+{% block title%}
+{{ title }}
+{% endblock%}
+
+{% block content %}
+
+<link rel="stylesheet" href="/static/css/style3.css">
+	<div class="container">
+	<div class="col">
+{% if request.user.is_authenticated %}
+
+<div class="container">
+	{% if request.user.is_superuser == True %}
+	<h1>
+	<span class="blue">&lt;</span> Categorias
+	<span class="blue">&gt;</span>
+	<span class="black">Listado</span>
+</h1>
+	{% for categoria in categorias %}
+	&nbsp;
+	<table class="container2 table table-bordered">
+			<thead>
+		<tr>
+			<td>Categoria</td>
+			<td>Descripción</td>
+			<td>Productos en la categoria</td>
+			<td>Creador el</td>
+			<td>Opciones</td>
+		</tr>
+
+			</thead>
+			<tbody>
+
+		<tr>
+			{% if categoria %}
+			<td>{{categoria.title}}</td>
+			<td>{{categoria.description}}</td>
+
+			<td>
+			<!-- {% for i in categoria.products.all %}
+			{{i.title}}, 
+			{% endfor %} -->
+			{{categoria.products.all|join:", "}}
+			</td>
+
+			<td>{{categoria.created_at}}</td>
+			<td>
+				<a href="{% url 'edit_category' categoria.id %}" >Editar</a>
+				<a href="{% url 'delete_category' categoria.id %}" >Eliminar</a>  
+			</td>
+		</tr>
+		{% endif %}
+		</tbody>
+</table>
+
+	{% endfor %}
+	{% else %} <h4 class="black"> Lo sentimos, Error 404; Not Found. No se han encontrado registros </h4>
+	{% endif %}
+
+</div>
+
+{% else %}
+<h1>Lo sentimos, Debe iniciar sesión primero para poder continuar.</h1>
+{% endif %}
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Editar
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="/static/css/style_forms.css">
+
+<div class="col">
+<div class="section">
+    {% if form.errors %}
+        <div class="alert alert-warning alert-dismissible">
+        <span class="close" data-dismiss="alert" aria-label="close">&times;</span>
+        {{form.errors}}
+        </div>
+    {% endif %}
+</div>
+
+<div class="row full-height justify-content-center">
+    <div class="col-12 text-center align-self-center py-5">
+        <div class="section pb-5 pt-5 pt-sm-2 text-center">
+            <h6 class="mb-0 pb-3"><span> Actualizar </span> <span>volver</span></h6>
+                <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+                    <label for="reg-log"></label>
+
+                        <div class="card-3d-wrap mx-auto">
+                            <div class="card-3d-wrapper">
+                                <div class="card-front">
+                                    <div class="center-wrap">
+                                        <div class="section text-center">
+                                            <h5 class="mb-4 pb-1">Datos ha actualizar:</h5>
+
+                            <form method="post">
+                                            {% csrf_token %}
+                                           <div class="form-group mt-2">
+                                        <i class="input-icon uil uil-at"></i>{{form.first_name}}
+                                            </div>
+                                            <div class="form-group mt-2">
+                                        <i class="input-icon uil uil-at"></i>{{form.last_name}}
+                                            </div>
+                                            <div class="form-group mt-2">
+                                        <i class="input-icon uil uil-lock-alt"></i>{{form.username}}
+                                            </div>
+                                            <div class="form-group mt-2">
+                                        <i class="input-icon uil uil-lock-alt"></i>{{form.email}}
+                                            </div>
+                            <button class="btn mt-4 btn-warning" type="submit">Sí, actualizar</button>
+                            
+                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-back">
+                                    <div class="center-wrap">
+                                        <div class="section text-center">
+                                            <h4 class="mb-4 pb-3">;)</h4>
+                                            <p class="mb-0 mt-4 text-center"><a href="{% url 'test' %}" class="link">cancelar</a></p>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

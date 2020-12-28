@@ -1,0 +1,25 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<div class="col">
+	{% include 'snippets/searchp.html' with query=query %}
+	<hr>
+
+	{% if count == 1 %}
+	<p> ({{ count }}) Resultado para: {{ query }}</p>
+	{% else %}
+	<p> ({{ count }}) Resultados para: {{ query }}</p>
+	{% endif%}
+	
+	{% if products %}
+
+	{% include 'snippets/listp.html' %} 
+
+	{%else%}
+	<p>no se han encontrado resultados para: {{ query }}</p>
+	{% endif %}
+	
+</div>
+
+{% endblock %}

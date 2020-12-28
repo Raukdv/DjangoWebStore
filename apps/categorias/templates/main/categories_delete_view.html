@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %}
+
+{% block title%}
+Eliminar
+{% endblock%}
+
+{% block content %}
+<div class="container">
+	<div class="col">
+		<form method="post">
+	{% csrf_token %}
+	<h3>¿Esta de acuerdo en eliminar esta Categoria concerniente a los siguientes datos?</h3>	
+	<table class="table table-bordered">
+	<thead>
+
+		<tr>
+			<td>Id de la categoria</td>
+			<td>Categoria</td>
+			<td>Descripción</td>
+			<td>Productos anexdos</td>
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% if object %}
+			<td>{{ object.id }}</td>
+			<td>{{ object.title }}</td>
+			<td>{{ object.description }}</td>
+			<td>{{ object.products.all|join:", " }}</td>
+		{% else %}
+		<h1>No hay registros de Productos</h1>
+		{% endif %}
+	</tbody>
+</table>
+	<button class="btn btn-danger" type="submit">Sí, eliminar</button>
+	<a class= "btn btn-default" href="{% url 'list_category' %}">Cancelar</a>
+</form>
+	</div>
+</div>
+
+{% endblock %}

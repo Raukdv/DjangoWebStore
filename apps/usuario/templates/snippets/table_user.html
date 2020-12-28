@@ -1,0 +1,45 @@
+<table class="container2 table table-bordered">
+			<thead>
+		<tr>
+			<td>Id de usuario</td>
+			<td>Nombre</td>
+			<td>Apellido</td>
+			<td>Nombre de Usuario</td>
+			<td>Registrado el</td>
+			<td>Ultima conexion</td>
+			<td>Correo</td>
+			<td>Permisos de administrador</td>
+			<td>Opciones</td>
+		</tr>
+
+			</thead>
+			<tbody>
+
+		<tr>
+			{% if current_user %}
+			<td>{{ current_user.id }}</td>
+			<td>{{ current_user.first_name }}</td>
+			<td>{{ current_user.last_name }}</td>
+			<td>{{ current_user.username }}</td>
+			<td>{{ current_user.date_joined }}</td>
+			<td>{{ current_user.last_login }}</td>
+			<td>{{ current_user.email }}</td>
+			<td>
+				{% if current_user.is_superuser %}
+				<span class="text-success">Tiene permisos</span>
+				{% else %}
+				<span class="text-danger">No tiene permisos</span>
+				{% endif %}
+			</td>
+			<td>
+			{% if current_user.is_authenticated %}
+			<a href="{% url 'edit' current_user.id %}" >Editar </a>&nbsp;
+			<a href="{% url 'delete' current_user.id %}" >eliminar</a>
+			{% else %}
+			<a href="{% url 'login' %}">Iniciar sesion</a>
+			{% endif %}	
+			</td>
+		</tr>
+		{% endif %}
+		</tbody>	
+</table>

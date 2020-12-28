@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+
+{% load productos_extras %}
+
+{% block content %}
+
+<div class="col-3">
+
+	{% if producto.image %}
+	<img src="{{ producto.image.url }}" alt="imagen de {{producto.title}}" width="200" height="200">
+	{% endif %}
+
+</div>
+
+<div class="col">
+
+	<div class="h3 font-weight-bold text-success">
+		Producto agregado.
+	</div>
+	<div>
+		<a href="{% url 'product_detail' producto.slug %}">{{ producto.title}}</a>
+	</div>
+	<div class="h3 font-weight-bold text-danger">
+		{{producto.price | price_format}}
+	</div>
+	<div class="mt-2">
+		<a href="{% url 'compras_main' %}" class="btn btn-info">Ver carrito</a>
+	</div>
+	<div class="mt-2">
+		<a href="{% url 'inicio' %}">Seguir comprando</a>
+	</div>
+</div>
+
+
+
+{% endblock %}
