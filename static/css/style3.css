@@ -1,0 +1,112 @@
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.42em;
+  color:#fff;
+  background-color:#efefef;
+}
+
+h1 {
+  font-size:3em; 
+  font-weight: 300;
+  line-height:1em;
+  text-align: center;
+  color: #4DC3FA;
+}
+
+h2 {
+  font-size:1em; 
+  font-weight: 300;
+  text-align: center;
+  display: block;
+  line-height:1em;
+  padding-bottom: 2em;
+  color: #FB667A;
+}
+
+h2 a {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #FB667A;
+  text-decoration: none;
+}
+
+.blue { color: #185875; }
+.black { color: black ; }
+
+.container2 th h1 {
+    font-weight: bold;
+    font-size: 1em;
+    text-align: left;
+    color: #185875;
+}
+
+.container2 td {
+    font-weight: normal;
+    font-size: normal;
+  -webkit-box-shadow: 0 2px 2px -2px #85c1e9 ; /*sombra del td*/
+     -moz-box-shadow: 0 2px 2px -2px #85c1e9 ;
+          box-shadow: 0 2px 2px -2px #85c1e9 ;
+}
+
+.container2 {
+    text-align: left;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+    display: table;
+    padding: 0 0 8em 0;
+}
+
+.container2 td, .container2 th {
+    padding-bottom: 2.5%;
+    padding-top: 2%;
+    padding-left: 0.50%;
+   
+}
+
+/* Background-color of the odd rows */
+.container2 tr:nth-child(odd) {
+    background-color: white;
+}
+
+/* Background-color of the even rows */
+.container2 tr:nth-child(even) {
+    background-color: #2C3446;
+}
+
+.container2 th {
+    background-color: #1F2739;
+}
+
+.container2 td:first-child { color: #FB667A; } /*color rojo de la primera casilla*/
+
+.container2 tr:hover {
+   background-color: white; /*color de las demas casillas en el evento*/
+-webkit-box-shadow: 0 6px 6px -6px #85c1e9;
+     -moz-box-shadow: 0 6px 6px -6px #85c1e9;
+          box-shadow: 0 6px 6px -6px #85c1e9;
+}
+
+.container2 td:hover {
+  background-color: #FFF842; /*colo amarrillo del evento*/
+  color: #403E10;
+  font-weight: bold;
+  
+  box-shadow: #76d7c4  -1px 1px, #76d7c4  -2px 2px, #76d7c4  -3px 3px, #76d7c4  -4px 4px, 
+  #76d7c4  -5px 5px, #76d7c4 -6px 6px; /*color en los bordes del evento*/
+  transform: translate3d(6px, -6px, 0);
+  
+  transition-delay: 0s;
+    transition-duration: 0.4s;
+    transition-property: all;
+  transition-timing-function: line;
+}
+
+@media (max-width: 800px) {
+.container2 td:nth-child(4),
+.container2 th:nth-child(4) { display: none; }
+}

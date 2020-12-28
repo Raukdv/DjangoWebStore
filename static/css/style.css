@@ -1,0 +1,43 @@
+table.custom_class
+{
+    color:#1f1f1f;
+    border: #004400 4px solid;
+    border-collapse: collapse;
+    font-size:16px;
+}
+
+table.custom_class th
+{
+    text-align: center;
+    color:purple;
+    background-color:#004400;
+    border: #004400 2px solid;
+    padding: 20px;
+
+}
+
+table.custom_class td
+{
+    text-align: center;
+    padding: 20px;
+    border: #004400 1px solid;
+    border-right-width: 2px;
+    border-left-width: 2px;
+}
+
+table.custom_class tr:nth-child(odd)
+{
+    background-color: #f3f3f3;
+}
+
+table.custom_class tr:nth-child(even)
+{
+    background-color: #efefef;
+}
+
+div.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 550px;
+}
